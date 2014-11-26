@@ -1,0 +1,22 @@
+{
+  "name": "watchdog monitor",
+  "version": "1.0",
+  "author": "Jimmy Chen",
+  "email": "jimmy.chen@moxa.com",
+  "description": "Monitoring process; respawn process if exception happend.",
+  "license": "MOXA",
+  "main": "watchdog.py",
+  "argument": "",
+  "priority": 20,
+  "hook": [],
+  "dependencies": {},
+  "repository": "",
+  "role": "model",
+  "ttl": 10,
+  "resources": [
+    {
+      "methods": ["get", "put", "delete"],
+      "resource": "/system/watchdog"
+    }
+  ]
+}

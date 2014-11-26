@@ -1,4 +1,7 @@
 sanji-watchdog
-==============
+=======================
 
-Watchdog bundle
+Sanji watchdog monitoring bundle
+
+
+apt-get install monit

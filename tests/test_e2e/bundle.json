@@ -1,0 +1,21 @@
+{
+  "name": "view_watchdog",
+  "version": "1.0",
+  "author": "Jimmy Chen",
+  "email": "jimmy.chen@moxa.com",
+  "description": "A test to join process into watchdog bundle",
+  "license": "MOXA",
+  "main": "view_watchdog.py",
+  "argument": "",
+  "priority": 20,
+  "hook": [],
+  "dependencies": {},
+  "repository": "",
+  "role": "view",
+  "ttl": 10,
+  "resources": [
+    {
+      "resource": "/system/watchdog"
+    }
+  ]
+}

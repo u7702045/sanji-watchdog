@@ -9,7 +9,6 @@ from sanji.connection.mqtt import Mqtt
 from sanji.model_initiator import ModelInitiator
 
 
-# TODO: logger should be defined in sanji package?
 logger = logging.getLogger()
 
 

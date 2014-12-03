@@ -37,7 +37,7 @@ class TestWatchdogClass(unittest.TestCase):
         self.watchdog = None
 
     @patch("watchdog.subprocess")
-    def test_put(self, subprocess):
+    def test1_put(self, subprocess):
         subprocess.check_output.return_value = True
         subprocess.call.return_value = True
         test_msg = {
@@ -68,45 +68,58 @@ class TestWatchdogClass(unittest.TestCase):
         self.watchdog.put_root(message, response=resp3, test=True)
 
     def test2_put(self):
-        test1_msg = {
+        test_msg = {
             "id": 1,
             "method": "put",
             "resource": "/system/watchdog"
             }
 
-        # case 5: data
-        def resp5(code=200, data=None):
+        # case 1: data
+        def resp1(code=200, data=None):
             self.assertEqual(200, code)
-        test1_msg["data"] = {"path": "somewhere", "process": "hello_world"}
-        message = Message(test1_msg)
-        self.watchdog.put_root(message, response=resp5, test=True)
+        test_msg["data"] = {"path": "somewhere", "process": "hello_world"}
+        message = Message(test_msg)
+        self.watchdog.put_root(message, response=resp1, test=True)
 
-        # case 9: data
-        def resp9(code=200, data=None):
+        # case 2: data
+        def resp2(code=200, data=None):
             self.assertEqual(200, code)
-        self.watchdog.get_root(message, response=resp9, test=True)
+        self.watchdog.get_root(message, response=resp2, test=True)
+
+    def test_get(self):
+        test_msg = {
+            "id": 1,
+            "method": "get",
+            "resource": "/system/watchdog"
+            }
+
+        # case 1: data
+        def resp1(code=200, data=None):
+            self.assertEqual(200, code)
+        message = Message(test_msg)
+        self.watchdog.get_root(message, response=resp1, test=True)
 
     def test_delete(self):
-        test2_msg = {
+        test_msg = {
             "id": 1,
-            "method": "put",
+            "method": "delete",
             "resource": "/system/watchdog/1",
             "param": {"id": 1}
             }
 
-        # case 5: data
-        def resp10(code=200, data=None):
+        # case 1: data
+        def resp1(code=200, data=None):
             self.assertEqual(400, code)
-        message = Message(test2_msg)
-        self.watchdog.delete_root(message, response=resp10, test=True)
+        message = Message(test_msg)
+        self.watchdog.delete_root(message, response=resp1, test=True)
 
-        # case 5: data
-        def resp11(code=200, data=None):
+        # case 2: data
+        def resp2(code=200, data=None):
             self.assertEqual(200, code)
         self.watchdog.processes = [1, 2, 3]
-        message = Message(test2_msg)
+        message = Message(test_msg)
         self.watchdog.monit_reload()
-        self.watchdog.delete_root(message, response=resp11, test=True)
+        self.watchdog.delete_root(message, response=resp2, test=True)
 
     def test_monit_reload(self):
         m = mock_open()

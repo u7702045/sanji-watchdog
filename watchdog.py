@@ -32,7 +32,7 @@ class Watchdog(Sanji):
                 fd.write("\tstop program = \"/usr/bin/killall -9 %s\"\n"
                          % process["process"])
 
-            fd.closed()
+            fd.close()
             subprocess.call("monit quit", shell=True)
             subprocess.call("monit -c data/monitrc -d 2", shell=True)
             return True

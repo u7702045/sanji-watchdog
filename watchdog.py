@@ -27,8 +27,8 @@ class Watchdog(Sanji):
             for process in self.processes:
                 fd.write("check process %s\n" % process["process"])
                 fd.write("\tmatching \"%s\"\n" % process["process"])
-                fd.write("\tstart program = \"/home/moxa/%s\"\n"
-                         % process["process"])
+                fd.write("\tstart program = \"%s\"\n"
+                         % process["path"])
                 fd.write("\tstop program = \"/usr/bin/killall -9 %s\"\n"
                          % process["process"])
 
